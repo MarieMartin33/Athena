@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
  Licensed to the Apache Software Foundation (ASF) under one or more
  contributor license agreements.  See the NOTICE file distributed with
  this work for additional information regarding copyright ownership.
@@ -14,13 +13,10 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
--->
-
-<!--
+--><!--
      For more details about configurations options that may appear in
      this file, see http://wiki.apache.org/solr/SolrConfigXml.
--->
-<config>
+--><config>
   <!-- In all configuration below, a prefix of "solr." for class names
        is an alias that causes solr to search appropriate packages,
        including org.apache.solr.(search|update|request|core|analysis)
@@ -72,20 +68,20 @@
        The examples below can be used to load some solr-contribs along
        with their external dependencies.
     -->
-  <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar"/>
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar"/>
 
-  <lib dir="${solr.install.dir:../../../..}/contrib/clustering/lib/" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-clustering-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/clustering/lib/" regex=".*\.jar"/>
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-clustering-\d.*\.jar"/>
 
-  <lib dir="${solr.install.dir:../../../..}/contrib/langid/lib/" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-langid-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/langid/lib/" regex=".*\.jar"/>
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-langid-\d.*\.jar"/>
 
-  <lib dir="${solr.install.dir:../../../..}/contrib/velocity/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-velocity-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/velocity/lib" regex=".*\.jar"/>
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-velocity-\d.*\.jar"/>
 
-  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
-  <lib dir="${solr.install.dir:../../../..}/dist/" regex="postgresql-.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar"/>
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="postgresql-.*\.jar"/>
 
 
   <!-- an exact 'path' can be used instead of a 'dir' to specify a 
@@ -119,8 +115,7 @@
 
        solr.RAMDirectoryFactory is memory based and not persistent.
     -->
-  <directoryFactory name="DirectoryFactory"
-                    class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}"/>
+  <directoryFactory class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}" name="DirectoryFactory"/>
 
   <!-- The CodecFactory for defining the format of the inverted index.
        The default implementation is SchemaCodecFactory, which is the official Lucene
@@ -262,7 +257,7 @@
 
        For more details see http://wiki.apache.org/solr/SolrJmx
     -->
-  <jmx />
+  <jmx/>
   <!-- If you want to connect to a particular server, specify the
        agentId
     -->
@@ -413,10 +408,7 @@
                       to occupy. Note that when this option is specified, the size
                       and initialSize parameters are ignored.
       -->
-    <filterCache class="solr.FastLRUCache"
-                 size="512"
-                 initialSize="512"
-                 autowarmCount="0"/>
+    <filterCache autowarmCount="0" class="solr.FastLRUCache" initialSize="512" size="512"/>
 
     <!-- Query Result Cache
 
@@ -426,10 +418,7 @@
             maxRamMB - the maximum amount of RAM (in MB) that this cache is allowed
                        to occupy
       -->
-    <queryResultCache class="solr.LRUCache"
-                      size="512"
-                      initialSize="512"
-                      autowarmCount="0"/>
+    <queryResultCache autowarmCount="0" class="solr.LRUCache" initialSize="512" size="512"/>
 
     <!-- Document Cache
 
@@ -437,18 +426,10 @@
          document).  Since Lucene internal document ids are transient,
          this cache will not be autowarmed.
       -->
-    <documentCache class="solr.LRUCache"
-                   size="512"
-                   initialSize="512"
-                   autowarmCount="0"/>
+    <documentCache autowarmCount="0" class="solr.LRUCache" initialSize="512" size="512"/>
 
     <!-- custom cache currently used by block join -->
-    <cache name="perSegFilter"
-           class="solr.search.LRUCache"
-           size="10"
-           initialSize="0"
-           autowarmCount="10"
-           regenerator="solr.NoOpRegenerator" />
+    <cache autowarmCount="10" class="solr.search.LRUCache" initialSize="0" name="perSegFilter" regenerator="solr.NoOpRegenerator" size="10"/>
 
     <!-- Field Value Cache
 
@@ -545,7 +526,7 @@
     <!-- QuerySenderListener takes an array of NamedList and executes a
          local query request for each NamedList in sequence.
       -->
-    <listener event="newSearcher" class="solr.QuerySenderListener">
+    <listener class="solr.QuerySenderListener" event="newSearcher">
       <arr name="queries">
         <!--
            <lst><str name="q">solr</str><str name="sort">price asc</str></lst>
@@ -553,7 +534,7 @@
           -->
       </arr>
     </listener>
-    <listener event="firstSearcher" class="solr.QuerySenderListener">
+    <listener class="solr.QuerySenderListener" event="firstSearcher">
       <arr name="queries">
         <!--
         <lst>
@@ -623,7 +604,7 @@
          The options below instruct Solr not to output any HTTP Caching
          related headers
       -->
-    <httpCaching never304="true" />
+    <httpCaching never304="true"/>
     <!-- If you include a <cacheControl> directive, it will be used to
          generate a Cache-Control header (as well as an Expires header
          if the value contains "max-age=")
@@ -691,7 +672,7 @@
        of SearchComponents (see below) and supports distributed
        queries across multiple shards
     -->
-  <requestHandler name="/select" class="solr.SearchHandler">
+  <requestHandler class="solr.SearchHandler" name="/select">
     <!-- default values for query parameters can be specified, these
          will be overridden by parameters in the request
       -->
@@ -760,7 +741,7 @@
   </requestHandler>
 
   <!-- A request handler that returns indented JSON by default -->
-  <requestHandler name="/query" class="solr.SearchHandler">
+  <requestHandler class="solr.SearchHandler" name="/query">
     <lst name="defaults">
       <str name="echoParams">explicit</str>
       <str name="wt">json</str>
@@ -778,7 +759,7 @@
        (SearchHandler) can be registered multiple times with different
        names (and different init parameters)
     -->
-  <requestHandler name="/browse" class="solr.SearchHandler" useParams="query,facets,velocity,browse">
+  <requestHandler class="solr.SearchHandler" name="/browse" useParams="query,facets,velocity,browse">
     <lst name="defaults">
       <str name="echoParams">explicit</str>
     </lst>
@@ -795,9 +776,7 @@
        http://wiki.apache.org/solr/ExtractingRequestHandler
 
     -->
-  <requestHandler name="/update/extract"
-                  startup="lazy"
-                  class="solr.extraction.ExtractingRequestHandler" >
+  <requestHandler class="solr.extraction.ExtractingRequestHandler" name="/update/extract" startup="lazy">
     <lst name="defaults">
       <str name="lowernames">true</str>
       <str name="fmap.meta">ignored_</str>
@@ -805,18 +784,7 @@
     </lst>
   </requestHandler>
 
-  <requestHandler name="/dataimport" class="solr.DataImportHandler">
-    <lst name="defaults">
-      <str name="config">data-config.xml</str>
-      <lst name="datasource">
-        <str name="name">athena_cdm_v5</str>
-        <str name="driver">org.postgresql.Driver</str>
-        <str name="url">jdbc:postgresql://localhost:5432/athena_cdm_v5</str>
-        <str name="user">athena</str>
-        <str name="password">athenapwd</str>
-     </lst>
-  </lst>
-</requestHandler>
+  
 
   <!-- Search Components
 
@@ -868,7 +836,7 @@
 
        http://wiki.apache.org/solr/SpellCheckComponent
     -->
-  <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+  <searchComponent class="solr.SpellCheckComponent" name="spellcheck">
 
     <str name="queryAnalyzerFieldType">text_general</str>
 
@@ -926,7 +894,7 @@
        See http://wiki.apache.org/solr/SpellCheckComponent for details
        on the request parameters.
     -->
-  <requestHandler name="/spell" class="solr.SearchHandler" startup="lazy">
+  <requestHandler class="solr.SearchHandler" name="/spell" startup="lazy">
     <lst name="defaults">
       <!-- Solr will use suggestions from both the 'default' spellchecker
            and from the 'wordbreak' spellchecker and combine them.
@@ -952,7 +920,7 @@
 
        http://wiki.apache.org/solr/TermVectorComponent
     -->
-  <searchComponent name="tvComponent" class="solr.TermVectorComponent"/>
+  <searchComponent class="solr.TermVectorComponent" name="tvComponent"/>
 
   <!-- A request handler for demonstrating the term vector component
 
@@ -961,7 +929,7 @@
        In reality you will likely want to add the component to your
        already specified request handlers.
     -->
-  <requestHandler name="/tvrh" class="solr.SearchHandler" startup="lazy">
+  <requestHandler class="solr.SearchHandler" name="/tvrh" startup="lazy">
     <lst name="defaults">
       <bool name="tv">true</bool>
     </lst>
@@ -979,10 +947,10 @@
        A component to return terms and document frequency of those
        terms
     -->
-  <searchComponent name="terms" class="solr.TermsComponent"/>
+  <searchComponent class="solr.TermsComponent" name="terms"/>
 
   <!-- A request handler for demonstrating the terms component -->
-  <requestHandler name="/terms" class="solr.SearchHandler" startup="lazy">
+  <requestHandler class="solr.SearchHandler" name="/terms" startup="lazy">
     <lst name="defaults">
       <bool name="terms">true</bool>
       <bool name="distrib">false</bool>
@@ -1001,13 +969,13 @@
        results for a given query regardless of the normal lucene
        scoring.
     -->
-  <searchComponent name="elevator" class="solr.QueryElevationComponent" >
+  <searchComponent class="solr.QueryElevationComponent" name="elevator">
     <!-- pick a fieldType to analyze queries -->
     <str name="queryFieldType">string</str>
   </searchComponent>
 
   <!-- A request handler for demonstrating the elevator component -->
-  <requestHandler name="/elevate" class="solr.SearchHandler" startup="lazy">
+  <requestHandler class="solr.SearchHandler" name="/elevate" startup="lazy">
     <lst name="defaults">
       <str name="echoParams">explicit</str>
     </lst>
@@ -1024,9 +992,7 @@
     <highlighting>
       <!-- Configure the standard fragmenter -->
       <!-- This could most likely be commented out in the "default" case -->
-      <fragmenter name="gap"
-                  default="true"
-                  class="solr.highlight.GapFragmenter">
+      <fragmenter class="solr.highlight.GapFragmenter" default="true" name="gap">
         <lst name="defaults">
           <int name="hl.fragsize">100</int>
         </lst>
@@ -1035,22 +1001,19 @@
       <!-- A regular-expression-based fragmenter
            (for sentence extraction)
         -->
-      <fragmenter name="regex"
-                  class="solr.highlight.RegexFragmenter">
+      <fragmenter class="solr.highlight.RegexFragmenter" name="regex">
         <lst name="defaults">
           <!-- slightly smaller fragsizes work better because of slop -->
           <int name="hl.fragsize">70</int>
           <!-- allow 50% slop on fragment sizes -->
           <float name="hl.regex.slop">0.5</float>
           <!-- a basic sentence pattern -->
-          <str name="hl.regex.pattern">[-\w ,/\n\&quot;&apos;]{20,200}</str>
+          <str name="hl.regex.pattern">[-\w ,/\n\"']{20,200}</str>
         </lst>
       </fragmenter>
 
       <!-- Configure the standard formatter -->
-      <formatter name="html"
-                 default="true"
-                 class="solr.highlight.HtmlFormatter">
+      <formatter class="solr.highlight.HtmlFormatter" default="true" name="html">
         <lst name="defaults">
           <str name="hl.simple.pre"><![CDATA[<em>]]></str>
           <str name="hl.simple.post"><![CDATA[</em>]]></str>
@@ -1058,26 +1021,19 @@
       </formatter>
 
       <!-- Configure the standard encoder -->
-      <encoder name="html"
-               class="solr.highlight.HtmlEncoder" />
+      <encoder class="solr.highlight.HtmlEncoder" name="html"/>
 
       <!-- Configure the standard fragListBuilder -->
-      <fragListBuilder name="simple"
-                       class="solr.highlight.SimpleFragListBuilder"/>
+      <fragListBuilder class="solr.highlight.SimpleFragListBuilder" name="simple"/>
 
       <!-- Configure the single fragListBuilder -->
-      <fragListBuilder name="single"
-                       class="solr.highlight.SingleFragListBuilder"/>
+      <fragListBuilder class="solr.highlight.SingleFragListBuilder" name="single"/>
 
       <!-- Configure the weighted fragListBuilder -->
-      <fragListBuilder name="weighted"
-                       default="true"
-                       class="solr.highlight.WeightedFragListBuilder"/>
+      <fragListBuilder class="solr.highlight.WeightedFragListBuilder" default="true" name="weighted"/>
 
       <!-- default tag FragmentsBuilder -->
-      <fragmentsBuilder name="default"
-                        default="true"
-                        class="solr.highlight.ScoreOrderFragmentsBuilder">
+      <fragmentsBuilder class="solr.highlight.ScoreOrderFragmentsBuilder" default="true" name="default">
         <!--
         <lst name="defaults">
           <str name="hl.multiValuedSeparatorChar">/</str>
@@ -1086,8 +1042,7 @@
       </fragmentsBuilder>
 
       <!-- multi-colored tag FragmentsBuilder -->
-      <fragmentsBuilder name="colored"
-                        class="solr.highlight.ScoreOrderFragmentsBuilder">
+      <fragmentsBuilder class="solr.highlight.ScoreOrderFragmentsBuilder" name="colored">
         <lst name="defaults">
           <str name="hl.tag.pre"><![CDATA[
                <b style="background:yellow">,<b style="background:lawgreen">,
@@ -1099,17 +1054,15 @@
         </lst>
       </fragmentsBuilder>
 
-      <boundaryScanner name="default"
-                       default="true"
-                       class="solr.highlight.SimpleBoundaryScanner">
+      <boundaryScanner class="solr.highlight.SimpleBoundaryScanner" default="true" name="default">
         <lst name="defaults">
           <str name="hl.bs.maxScan">10</str>
-          <str name="hl.bs.chars">.,!? &#9;&#10;&#13;</str>
+          <str name="hl.bs.chars">.,!? 	
+&#13;</str>
         </lst>
       </boundaryScanner>
 
-      <boundaryScanner name="breakIterator"
-                       class="solr.highlight.BreakIteratorBoundaryScanner">
+      <boundaryScanner class="solr.highlight.BreakIteratorBoundaryScanner" name="breakIterator">
         <lst name="defaults">
           <!-- type should be one of CHARACTER, WORD(default), LINE and SENTENCE -->
           <str name="hl.bs.type">WORD</str>
@@ -1207,8 +1160,7 @@
   </updateProcessor>
 
   <!-- The update.autoCreateFields property can be turned to false to disable schemaless mode -->
-  <updateRequestProcessorChain name="add-unknown-fields-to-the-schema" default="${update.autoCreateFields:true}"
-                               processor="uuid,remove-blank,field-name-mutating,parse-boolean,parse-long,parse-double,parse-date,add-schema-fields">
+  <updateRequestProcessorChain default="${update.autoCreateFields:true}" name="add-unknown-fields-to-the-schema" processor="uuid,remove-blank,field-name-mutating,parse-boolean,parse-long,parse-double,parse-date,add-schema-fields">
     <processor class="solr.LogUpdateProcessorFactory"/>
     <processor class="solr.DistributedUpdateProcessorFactory"/>
     <processor class="solr.RunUpdateProcessorFactory"/>
@@ -1304,7 +1256,7 @@
      <queryResponseWriter name="schema.xml" class="solr.SchemaXmlResponseWriter"/>
     -->
 
-  <queryResponseWriter name="json" class="solr.JSONResponseWriter">
+  <queryResponseWriter class="solr.JSONResponseWriter" name="json">
     <!-- For the purposes of the tutorial, JSON responses are written as
      plain text so that they are easy to read in *any* browser.
      If you expect a MIME type of "application/json" just remove this override.
@@ -1315,7 +1267,7 @@
   <!--
      Custom response writers can be declared as needed...
     -->
-  <queryResponseWriter name="velocity" class="solr.VelocityResponseWriter" startup="lazy">
+  <queryResponseWriter class="solr.VelocityResponseWriter" name="velocity" startup="lazy">
     <str name="template.base.dir">${velocity.template.base.dir:}</str>
     <str name="solr.resource.loader.enabled">${velocity.solr.resource.loader.enabled:true}</str>
     <str name="params.resource.loader.enabled">${velocity.params.resource.loader.enabled:false}</str>
@@ -1325,7 +1277,7 @@
        in Solr's conf/xslt directory.  Changes to xslt files are checked for
        every xsltCacheLifetimeSeconds.
     -->
-  <queryResponseWriter name="xslt" class="solr.XSLTResponseWriter">
+  <queryResponseWriter class="solr.XSLTResponseWriter" name="xslt">
     <int name="xsltCacheLifetimeSeconds">5</int>
   </queryResponseWriter>
 

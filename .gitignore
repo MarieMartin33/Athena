@@ -8,3 +8,6 @@ src/main/resources/public/
 **/resources/config/application*-dev-*.properties
 **/resources/config/application*-dev-*.yaml
 **/resources/config/application*-dev-*.yml
+
+pgdata/
+LOG_*

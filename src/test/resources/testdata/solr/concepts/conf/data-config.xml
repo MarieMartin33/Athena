@@ -2,7 +2,7 @@
 
  <document name='concepts'>
    <entity name="concept"
-           dataSource="athena_cdm_v5"
+           dataSource="data_source_cdm_db"
            pk="concept_id"
 
             query="select c.concept_id,
