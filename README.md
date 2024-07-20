@@ -5,11 +5,11 @@ Interhop [Susana](https://framagit.org/interhop/omop/susana)
 
 # About this documentation
 
-OMOP need a real terminology manager. Best of all worlds should be unified.
+OMOP needs a real terminology manager. Best of all worlds (susana+usagi+susana+fhir) should be unified.
 
 Athena uses PostgreSQL, Solr, Spring boot and react (AthenaUI).
 Its installation is not really documented. This is the point of this fork.
-As athena didn't updare for years, it is the occasion to see how far it is.
+As athena didn't update for years, it is the occasion to see how far it is from up-to-date libraries.
 
 # Compile and install
 
